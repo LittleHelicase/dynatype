@@ -17,4 +17,9 @@ describe('Translator', function () {
     expect(translator.from(t)).to.equal('PointXY')
     expect(translator.to(t)).to.equal('PointRPhi')
   })
+  it('Complains if a name clash occurs', function () {
+    var t1 = dtype.descriptors('A', {})
+    var t2 = dtype.descriptors('A', {different: 'bool'})
+    expect(function () { dtype.translators(t1, t2) }).to.throw.an(Error)
+  })
 })
