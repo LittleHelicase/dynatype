@@ -3,13 +3,14 @@
 var expect = require('chai').expect
 
 var dtype = require('../lib/datatype')
-var translator = require('../lib/translator')
+var descriptor = dtype.descriptor
+var translator = dtype.translator
 
 describe('Translator', function () {
   var t
   beforeEach(function () {
-    var pointXY = dtype.descriptor('PointXY', {x: 0, y: 0})
-    var pointRPhi = dtype.descriptor('PointRPhi', {r: 0, phi: 0})
+    var pointXY = descriptor.create('PointXY', {x: 0, y: 0})
+    var pointRPhi = descriptor.create('PointRPhi', {r: 0, phi: 0})
     t = translator.create(pointXY, pointRPhi)
   })
 
@@ -18,8 +19,8 @@ describe('Translator', function () {
     expect(translator.to(t)).to.equal('PointRPhi')
   })
   it('Complains if a name clash occurs', function () {
-    var t1 = dtype.descriptors('A', {})
-    var t2 = dtype.descriptors('A', {different: 'bool'})
-    expect(function () { dtype.translators(t1, t2) }).to.throw.an(Error)
+    var t1 = descriptor.create('A', {})
+    var t2 = descriptor.create('A', {different: 'bool'})
+    expect(function () { translator.create(t1, t2) }).to.throw.an(Error)
   })
 })
