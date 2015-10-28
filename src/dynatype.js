@@ -7,7 +7,7 @@ export function create (name, data) {
 }
 
 export function typename (dynatype) {
-  return dynatype.name
+  return dynatype.name 
 }
 
 export function hasProperty (dynatype, property) {
