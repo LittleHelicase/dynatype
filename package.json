@@ -1,5 +1,5 @@
 {
-  "name": "dynatype",
+  "name": "@buggy1/dynatype",
   "version": "0.1.0",
   "description": "A dynamic type implementation.",
   "main": "lib/dynatype.js",
